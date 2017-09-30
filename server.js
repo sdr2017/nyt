@@ -1,16 +1,19 @@
-var express = require("express");
+var Articles = require("./models/models.js");
+var apiRoutes = require("./routes/apiRoutes.js");
 var mongojs = require("mongojs");
-var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-var Articles = require("./models/models.js")
+
+var express = require("express");
+var bodyParser = require("body-parser");
+var path = require("path");
+var app = express();
 
 var port = process.env.PORT || 3000;
 
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/nyt");
 
-var app = express();
 
 // Set the app up with morgan, body-parser, and a static folder
 app.use(logger("dev"));
