@@ -1,6 +1,7 @@
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var ArticleSchema - new Schema({
+var ArticleSchema = new Schema({
 	title: {
 		type: String,
 		trim: true,

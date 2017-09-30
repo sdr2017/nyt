@@ -3,7 +3,9 @@ var mongojs = require("mongojs");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-var Articles = require("models/models.js")
+var Articles = require("./models/models.js")
+
+var port = process.env.PORT || 3000;
 
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/nyt");
@@ -28,3 +30,7 @@ var db = mongojs(databaseUrl, collections);
 db.on("error", function(error) {
   console.log("Database Error:", error);
 });
+
+
+app.listen(port);
+console.log("listening on Port 3000");
