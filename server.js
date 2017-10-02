@@ -1,32 +1,31 @@
-var Articles = require("./models/models.js");
-var apiRoutes = require("./routes/apiRoutes.js");
-var mongojs = require("mongojs");
-var logger = require("morgan");
-var mongoose = require("mongoose");
-
 var express = require("express");
 var bodyParser = require("body-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose");
+var mongojs = require("mongojs");
 var path = require("path");
-var app = express();
+var apiRoutes = require("./controllers/apiRoutes.js");
+var Article = require("./models/Article.js");
 
+var app = express();
+var port = process.env.PORT || 3000;
+
+app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-apiRoutes(app);
-
-var port = process.env.PORT || 3000;
-
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/nyt");
-
-
-// Set the app up with morgan, body-parser, and a static folder
-app.use(logger("dev"));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
 app.use(express.static("public"));
+//router(app);
+
+//mongoose.Promise = Promise;
+// mongoose.connect("mongodb://localhost/nyt");
+// var db = mongoose.connection;
+
+// db.once("open", function() {
+//   console.log("Mongoose connection successful.");
+// });
 
 // Database configuration
 var databaseUrl = "nytreactdb";
