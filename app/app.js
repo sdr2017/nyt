@@ -3,7 +3,6 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 
 // Grabs the Routes
-var Main = require("./components/Main");
-
+import Main from './components/Main';
 // Renders the contents according to the route page.
-ReactDOM.render(<Main />, document.getElementById("app"));
+ReactDOM.render(<Main/>, document.getElementById("app"));
